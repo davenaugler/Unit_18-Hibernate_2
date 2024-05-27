@@ -1,9 +1,23 @@
 package com.coderscampus.Unit_18_Hibernate_2.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="users")
 public class User {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
     private String username;
     private String password;
     private String name;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public String getUsername() {
         return username;
