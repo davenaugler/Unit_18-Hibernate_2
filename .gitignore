@@ -35,3 +35,6 @@ build/
 ### Maven ###
 mvnw
 mvnw.cmd
+
+### Configuration files ###
+.env
