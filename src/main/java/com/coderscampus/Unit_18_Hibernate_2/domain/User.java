@@ -18,6 +18,8 @@ public class User {
         joinColumns = @JoinColumn(name="user_id"),
         inverseJoinColumns = @JoinColumn(name="account_id"))
     private List<Account> accounts = new ArrayList<>();
+    @OneToOne(mappedBy = "user")
+    private Address address;
 
     public Long getUserId() {
         return userId;
@@ -57,5 +59,13 @@ public class User {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
