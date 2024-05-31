@@ -16,6 +16,8 @@ public class Account {
     private String accountName;
     @OneToMany(mappedBy = "account")
     private List<Transaction> transactions = new ArrayList<>();
+    @ManyToMany(mappedBy = "accounts")
+    private List<User> users = new ArrayList<>();
 
     public Long getAccountId() {
         return accountId;
@@ -39,5 +41,13 @@ public class Account {
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

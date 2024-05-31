@@ -2,6 +2,9 @@ package com.coderscampus.Unit_18_Hibernate_2.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -10,6 +13,11 @@ public class User {
     private String username;
     private String password;
     private String name;
+    @ManyToMany
+    @JoinTable(name="user_account",
+        joinColumns = @JoinColumn(name="user_id"),
+        inverseJoinColumns = @JoinColumn(name="account_id"))
+    private List<Account> accounts = new ArrayList<>();
 
     public Long getUserId() {
         return userId;
@@ -41,5 +49,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
 }
