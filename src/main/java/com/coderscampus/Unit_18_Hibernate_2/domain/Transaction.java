@@ -5,15 +5,18 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="transactions")
+@Table(name = "transactions")
 public class Transaction {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
     private LocalDateTime transactionDate;
     private Double amount;
     @Column(length = 1)
     private String type;
-//    private Account account;
+    @ManyToOne
+    @JoinColumn(name="account_id")
+    private Account account;
 
     public Long getTransactionId() {
         return transactionId;
@@ -47,11 +50,11 @@ public class Transaction {
         this.type = type;
     }
 
-//    public Account getAccount() {
-//        return account;
-//    }
-//
-//    public void setAccount(Account account) {
-//        this.account = account;
-//    }
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }
