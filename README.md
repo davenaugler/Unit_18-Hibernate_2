@@ -231,3 +231,21 @@ private User user;
 ---
 
 # Unit 19 ORM Hibernate (Part 2)
+
+## 1 - Intro to Spring Data Jpa
+1. Instead of using JDBC (Java Database Connectivity) to manually create our SQL queries we will use Spring Data JPA because there is a lot of "out of the box" queries already made for use. We'll dive deeper into customizing our own later on.
+2. Create the `repository` package at the main folder level within the `java` package. This is the same level that you'll already have the `domain` package.
+3. Within `repository` create a UserController interface, not class. This interface will extend `JpaRepository` and it will extend 2 things.
+- 1. It extends T which stands for Type of domain object it will be working with. In this case, the UserRepository extends the domain object of `User`.
+- 2. And ID, stands for Type of Id. When you go to the User class what is the @Id of the User? The @Id is Long, and that'll be what you put in for ID.
+  - See below for the visual example
+    - Because this is an interface we use `extends`. If this was a class we would use `implements`, rather than `extends`.
+```Java
+package com.coderscampus.Unit_18_Hibernate_2.web;
+
+import com.coderscampus.Unit_18_Hibernate_2.domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserController extends JpaRepository<User, Long> {
+}
+```
