@@ -1,4 +1,4 @@
-# Unit_18-Hibernate_2
+# Unit 18 ORM Hibernate (Part 1)
 
 ## 1 - Spring Initializr setup for Hibernate and Spring Data JPA
 - Language: Java
@@ -227,3 +227,7 @@ private User user;
 @JoinColumn(name = "user_id")
 private User user;
 ```
+
+---
+
+# Unit 19 ORM Hibernate (Part 2)
