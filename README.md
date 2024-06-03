@@ -3,18 +3,18 @@
 
 <summary>1 - Spring Initializr setup for Hibernate and Spring Data JPA</summary>
 
-- Language: Java
-- Project: Maven
-- Spring Boot: 3.3.0
-- Project Metadata:
-    - Group: com.coderscampus
-    - Artifact: Unit_18_Hibernate_2
-    - Name: Unit_18_Hibernate
-    - Description: Demo project for Spring Boot and Hibernate
-    - Package name: com.coderscampus.Unit_18_Hibernate_2
-- Packaging: Jar
-- Java: 17
-- Dependencies:
+- **Language:** Java
+- **Project:** Maven
+- **Spring Boot:** 3.3.0
+- **Project Metadata:**
+    - **Group:** com.coderscampus
+    - **Artifact:** Unit_18_Hibernate_2
+    - **Name:** Unit_18_Hibernate
+    - **Description:** Demo project for Spring Boot and Hibernate
+    - **Package name:** com.coderscampus.Unit_18_Hibernate_2
+- **Packaging:** Jar
+- **Java:** 17
+- **Dependencies:**
     - Spring Web
     - Spring Data JPA
     - Thymeleaf
