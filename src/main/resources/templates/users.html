@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<h1>Users</h1>
+<div th:each="user : ${users}">
+    <span th:text="${user.userId}"></span>
+    <span th:text="${user.name}"></span>
+    <span th:text="${user.username}"></span>
+</div>
+
+</body>
+</html>

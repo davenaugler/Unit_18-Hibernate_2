@@ -1,4 +1,10 @@
 package com.coderscampus.Unit_18_Hibernate_2.repo;
 
-public class UserRepository {
+import com.coderscampus.Unit_18_Hibernate_2.domain.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
 }
