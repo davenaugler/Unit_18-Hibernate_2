@@ -379,3 +379,44 @@ public class UserController  {
 ```
 
 </details>
+
+<details>
+
+<summary>3 - Showing Users on HTML Page</summary>
+
+1. As of right now we have no users, so jump into MySQL Workbench or DataGrip and add the following SQL to insert a group of users.
+```SQL
+INSERT INTO users (name, password, username)
+VALUES ("Trevor Page", "mmmmmHoney!", "trevor@cratycodr.com"),
+       ("John Doe", "dontEnjoyHoney", "johndoe@doe.com"),
+       ("Amy Spears", "2000sAllTheWay", "amyspears@gmail.com");
+```
+
+When we run the app we can navigate to `localhost:8080` and now see all our users.
+
+2. Now we want to be able to find 1 user. Go to `UserService.java` and you'll code the following...
+```Java
+ public User findOneUserById(Long userId) {
+        Optional<User> userOpt = userRepo.findById(userId);
+        return userOpt.orElse(new User());
+    }
+```
+- Reason for the optional is becase there is no garantee the userId that's put in the URL will be there and the `orElse` is added to allow us to not crash the web app if the user isn't actually there. It'll return us a blank user.
+3. Navigate to `UserController.java` and create the mapping and method to grab this data.
+```Java
+    @GetMapping("/users/{userId}")
+    public String getOneUser(@PathVariable Long userId, ModelMap model) {
+        User user = userService.findOneUserById(userId);
+        model.put("users", Arrays.asList(user));
+        return "users";
+    }
+```
+- Ensure that the GetMapping {userId} is the same as the PathVariable Long userId. That is what is being passed into the path and what's being used in this method.
+
+4. One addition I made was to navigate over to `templates/users.html` and attach the navigational link to use userId using Thymeleaf, so that each users Id is clickable, rather than writing each user out in the URL each time we want to view one of them. Update the <a> tag like it is below.
+
+```HTML
+<a th:href="@{/users/{id}(id=${user.userId})}" th:text="${user.userId}"></a>
+```
+
+</details>
