@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create Account</title>
+</head>
+
+<body>
+<h1>Create Account</h1>
+<form action="/register" method="POST" autocomplete="off">
+    <!--    NAME-->
+    <div>
+        <label>Full Name</label>
+        <input type="text" th:field="${user.name}" placeholder="" readonly onfocus="this.removeAttribute('readonly')"/>
+    </div>
+    <!--    USERNAME-->
+
+    <div>
+        <label>Username</label>
+        <input type="text" th:field="${user.username}" placeholder="" readonly onfocus="this.removeAttribute('readonly')"/>
+
+    </div>
+    <!--    PASSWORD-->
+    <div>
+        <label>Password</label>
+<!--    This "user" is pulled from UserController.java, line 40-->
+        <input type="password" th:field="${user.password}" placeholder="" readonly onfocus="this.removeAttribute('readonly')"/>
+    </div>
+
+    <div>
+        <input type="submit" value="Create Account"/>
+    </div>
+</form>
+
+<div>
+    <a type="submit" href="/users">All Users</a>
+</div>
+</body>
+</html>
