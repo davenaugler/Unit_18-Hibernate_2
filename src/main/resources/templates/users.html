@@ -6,17 +6,22 @@
 </head>
 <body>
 <h1>Users</h1>
-<div th:each="user : ${users}">
-    <a th:href="@{/users/{id}(id=${user.userId})}" th:text="${user.userId}"></a><br/>
-    <span th:text="${user.name}"></span><br/>
-    <span th:text="${user.username}"></span><br/>
-    <span th:text="${user.password}"></span>
-    <hr/>
-</div>
-
+<br>
 <div>
     <a type="submit" href="/register">Create Account</a>
 </div>
+<br>
+<hr>
+
+<div th:each="user : ${users}">
+    <a th:href="@{/users/{id}(id=${user.userId})}" th:text="${user.userId}"></a><br/>
+    <span th:text="${user.username}"></span><br/>
+    <span th:text="${user.password}"></span>
+    <span th:text="${user.name}"></span><br/>
+    <hr/>
+</div>
+
+
 
 </body>
 </html>

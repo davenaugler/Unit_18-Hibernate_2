@@ -50,8 +50,12 @@
 			<artifactId>java-dotenv</artifactId>
 			<version>5.2.2</version>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 
-		<!--Might Need This-->
+        <!--Might Need This-->
 <!--		<dependency>-->
 <!--			<groupId>nl.geodienstencentrum.maven</groupId>-->
 <!--			<artifactId>sass-maven-plugin</artifactId>-->

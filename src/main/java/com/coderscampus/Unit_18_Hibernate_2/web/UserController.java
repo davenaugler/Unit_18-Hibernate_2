@@ -50,8 +50,9 @@ public class UserController {
 
     @PostMapping("/register")
     public String postCreateUser(User user) {
-        System.out.println("user: " + user);
+        System.out.println("BEFORE user gets Primary Key: " + user);
         userService.createUser(user);
+        System.out.println("AFTER user gets Primary Key" + user);
         return "redirect:/register";
     }
 
