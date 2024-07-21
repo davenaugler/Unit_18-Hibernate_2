@@ -5,7 +5,9 @@
     <title>Users</title>
 </head>
 <body>
-<h1>Users</h1>
+
+<!-- H1 will display Users or User, pending how many users are displayed -->
+<h1 th:text="${users.size() == 1 ? 'User' : 'Users'}">Users</h1>
 <br>
 <div>
     <a type="submit" href="/register">Create Account</a>
@@ -22,6 +24,13 @@
     <span th:text="${user.password}"></span><br/>
     <span th:text="${user.name}"></span><br/>
     <hr/>
+</div>
+
+<!-- Back button ONLY appears when viewing a single user -->
+<div th:if="${users.size() == 1}">
+    <a th:href="@{/users}">Back to all users</a>
+    <br>
+    <hr>
 </div>
 
 
