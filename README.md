@@ -1,4 +1,12 @@
+## ToDo's 
+ -[] If person navigates to `/users/50` and there is no user with ID of 50 then they get an error page.
+
+
+
+
+
 # Unit 18 ORM Hibernate (Part 1)
+
 <details>
 
 <summary>1 - Spring Initializr setup for Hibernate and Spring Data JPA</summary>
