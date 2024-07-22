@@ -1,11 +1,11 @@
-## ToDo's 
+# ToDo's 
  - [ ] If person navigates to `/users/50` and there is no user with ID of 50 then they get an error page.
 
 
 
 
 
-# Unit 18 ORM Hibernate (Part 1)
+## Unit 18 ORM Hibernate (Part 1)
 
 <details>
 
@@ -275,7 +275,7 @@ private User user;
 
 ---
 
-# Unit 19 ORM Hibernate (Part 2)
+## Unit 19 ORM Hibernate (Part 2)
 
 <details>
 
