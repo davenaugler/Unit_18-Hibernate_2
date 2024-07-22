@@ -1,5 +1,5 @@
 ## ToDo's 
- -[] If person navigates to `/users/50` and there is no user with ID of 50 then they get an error page.
+ - [ ] If person navigates to `/users/50` and there is no user with ID of 50 then they get an error page.
 
 
 
