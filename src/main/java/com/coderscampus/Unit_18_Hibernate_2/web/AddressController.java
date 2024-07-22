@@ -15,18 +15,11 @@ public class AddressController {
 
     private final AddressService addressService;
 
+
     public AddressController(AddressService addressService) {
         this.addressService = addressService;
     }
 
-    // Brought over from UserController.java
-//    @GetMapping("/users/{userId}")
-//    public String getOneUser(@PathVariable Long userId, ModelMap model) {
-//        User user = userService.findOneUserById(userId);
-//        model.put("users", Arrays.asList(user));
-//        model.put("user", user);
-//        return "users";
-//    }
 
 
 }

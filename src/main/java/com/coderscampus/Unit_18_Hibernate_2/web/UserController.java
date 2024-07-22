@@ -1,6 +1,8 @@
 package com.coderscampus.Unit_18_Hibernate_2.web;
 
+import com.coderscampus.Unit_18_Hibernate_2.domain.Address;
 import com.coderscampus.Unit_18_Hibernate_2.domain.User;
+import com.coderscampus.Unit_18_Hibernate_2.service.AddressService;
 import com.coderscampus.Unit_18_Hibernate_2.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,9 +18,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final AddressService addressService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AddressService addressService) {
         this.userService = userService;
+        this.addressService = addressService;
     }
 
     // user.html
@@ -32,8 +36,10 @@ public class UserController {
     @GetMapping("/users/{userId}")
     public String getOneUser(@PathVariable Long userId, ModelMap model) {
         User user = userService.findOneUserById(userId);
+        Address address = addressService.findOneAddressById(userId);
         model.put("users", Arrays.asList(user));
         model.put("user", user);
+        model.put("address", address != null ? address : new Address());
         return "users";
     }
 
@@ -55,6 +61,12 @@ public class UserController {
         userService.createUser(user);
         System.out.println("AFTER user gets Primary Key" + user);
         return "redirect:/register";
+    }
+
+    @PostMapping("/users/{userId}/delete")
+    public String deleteOneUser(@PathVariable Long userId, User user) {
+        userService.delete(userId);
+        return "redirect:/users";
     }
 
 

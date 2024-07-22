@@ -13,7 +13,7 @@ public class Address {
     @Column(length = 200)
     private String addressLine1;
     @Column(length = 200)
-    private String getAddressLine2;
+    private String addressLine2;
     @Column(length = 100)
     private String city;
     @Column(length = 100)
@@ -47,12 +47,12 @@ public class Address {
         this.addressLine1 = addressLine1;
     }
 
-    public String getGetAddressLine2() {
-        return getAddressLine2;
+    public String getAddressLine2() {
+        return addressLine2;
     }
 
-    public void setGetAddressLine2(String getAddressLine2) {
-        this.getAddressLine2 = getAddressLine2;
+    public void setAddressLine2(String getAddressLine2) {
+        this.addressLine2 = addressLine2;
     }
 
     public String getCity() {
@@ -93,7 +93,7 @@ public class Address {
                 "userId=" + userId +
                 ", user=" + user +
                 ", addressLine1='" + addressLine1 + '\'' +
-                ", getAddressLine2='" + getAddressLine2 + '\'' +
+                ", getAddressLine2='" + addressLine2 + '\'' +
                 ", city='" + city + '\'' +
                 ", region='" + region + '\'' +
                 ", country='" + country + '\'' +
