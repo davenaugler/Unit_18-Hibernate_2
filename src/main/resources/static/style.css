@@ -128,10 +128,6 @@ h1 {
 
 }
 
-
-/*-----------------*/
-/*--User page--*/
-/*-----------------*/
 /* User label & input field on same line */
 .inline {
     display: flex;
