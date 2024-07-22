@@ -1,0 +1,9 @@
+
+/*User label & input field on same line*/
+.inline {
+    display: flex;
+    align-items: center;
+}
+.inline label {
+    margin-right: 6px;
+}
