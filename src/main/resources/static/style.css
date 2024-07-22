@@ -1,9 +1,255 @@
+/*------------*/
+/* Both pages */
+/*------------*/
 
-/*User label & input field on same line*/
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+/*a {*/
+/*    text-decoration: none;*/
+/*    color: inherit;*/
+/*}*/
+
+ol, ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+html {
+    font-size: 16px; /* Default size. Adjust as needed for base scaling */
+}
+
+body {
+    font-size: 1rem; /* 16px */
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+}
+
+/* Links */
+a {
+    font-weight: bold;
+    color: #007BFF; /* Blue color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue for hover state */
+    text-decoration: underline;
+}
+
+
+/* Apply padding to a main container */
+.main-container {
+    padding: 1rem; /* Default padding (for screen sizes smaller than 768px) */
+    box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+}
+
+/* Responsive padding for different screen sizes */
+@media (min-width: 768px) {
+    .main-container {
+        padding: 2rem; /* Increase padding for tablets and larger screens */
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-container {
+        padding: 3rem; /* Further increase padding for desktops */
+    }
+}
+
+/* Add left margin to Create Account and Back links */
+.create-account, .back-link {
+    margin-left: 2rem;
+}
+
+h1 {
+    margin-bottom: 0.25rem; /* Adjust as needed */
+}
+
+.create-account-container {
+    margin-bottom: 0.25rem;
+}
+
+
+/*-----------------*/
+/*--Users page--*/
+/*-----------------*/
+.user-section {
+    margin: 0.25rem;
+}
+
+/* User heading with margin */
+.user-id {
+    font-weight: 900;
+}
+
+.user-content {
+    margin-left: 1rem;
+
+}
+
+
+/*-----------------*/
+/*--User page--*/
+/*-----------------*/
+/* User label & input field on same line */
 .inline {
     display: flex;
     align-items: center;
 }
+
+/* Set a fixed width for labels to ensure alignment */
 .inline label {
-    margin-right: 6px;
+    margin-right: 0.75rem; /* Margin between label and input */
+    width: 5rem; /* Adjust this value to fit the longest label */
+    /*border: 2px solid #007BFF; !* Add a colored border (blue in this example) *!*/
+    /*padding: 0.5rem; !* Optional: Add padding to create space between the text and the border *!*/
+    /*box-sizing: border-box; !* Ensure padding and border are included in the element's total width and height *!*/
 }
+
+/* Adjust input fields to take up the remaining space */
+.inline .control {
+    flex-grow: 1;
+}
+
+/* Add space below the Full Name section */
+.inline:last-of-type {
+    margin-bottom: 1rem; /* Adjust this value as needed */
+}
+
+/* Inline Address */
+.inline-address {
+    display: flex;
+    align-items: center;
+}
+
+/* Set a fixed width for labels to ensure alignment */
+.inline-address label {
+    margin-right: 0.75rem; /* Margin between label and input */
+    width: 7rem; /* Adjust this value to fit the longest label */
+    /*border: 2px solid #007BFF; !* Add a colored border (blue in this example) *!*/
+    /*padding: 0.5rem; !* Optional: Add padding to create space between the text and the border *!*/
+    /*box-sizing: border-box; !* Ensure padding and border are included in the element's total width and height *!*/
+}
+
+/* Adjust input fields to take up the remaining space */
+.inline-address .control {
+    flex-grow: 1;
+}
+
+/* Add space below the Full Name section */
+.inline-address:last-of-type {
+    margin-bottom: 1rem; /* Adjust this value as needed */
+}
+
+.update-button {
+    padding: 0.25rem 0.625rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem; /* 4px = 0.25rem */
+    font-size: 1rem; /* 16px = 1rem */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.update-button:hover {
+    background-color: #0056b3; /* Darker blue for hover state */
+    color: white; /* Ensure text remains white */
+    text-decoration: none;
+}
+
+.delete-button {
+    padding: 0.25rem 0.625rem;
+    background-color: #FF4136;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem; /* 4px = 0.25rem */
+    font-size: 1rem; /* 16px = 1rem */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.delete-button:hover {
+    background-color: #e00b1c; /* Darker red for hover state */
+    color: white; /* Ensure text remains white */
+    text-decoration: none;
+}
+
+.create-account-button {
+    padding: 0.25rem 0.625rem; /* 4px = 0.25rem, 10px = 0.625rem */
+    background-color: #800080; /* Purple color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem; /* 4px = 0.25rem */
+    font-size: 1rem; /* 16px = 1rem */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.create-account-button:hover {
+    background-color: #4B0082; /* Darker purple for hover state */
+    color: white; /* Ensure text remains white */
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

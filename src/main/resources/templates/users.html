@@ -6,57 +6,129 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<div class="main-container">
 
-<!-- H1 will display Users or User, pending how many users are displayed -->
-<!--The User's ID will appear next to User to ensure you know which user is being viewed.-->
-<h1 th:text="${users.size() == 1 ? 'User ' + users[0].userId : 'Users'}">Users</h1>
-<br>
-<div>
-    <a type="submit" href="/register">Create Account</a>
-</div>
-<br>
-<hr>
+    <!-- H1 will display Users or User, depending on how many users are displayed -->
+    <!-- The User's ID will appear next to User to ensure you know which user is being viewed. -->
+    <h1 th:text="${users.size() == 1 ? 'User ' + users[0].userId : 'Users'}">Users</h1>
+    <div class="create-account-container">
+        <a class="create-account" type="submit" href="/register">Create Account</a>
+    </div>
+    <hr>
 
-<div th:each="user : ${users}">
-    <div>
-        <label>ID: <a th:href="@{/users/{id}(id=${user.userId})}" th:text="${user.userId}"></a></label>
+    <div th:each="user : ${users}">
+
+        <section class="user-section">
+            <!-- Display profile heading based on the number of users -->
+            <div th:if="${users.size() != 1}">
+                <div class="user-id">
+                    <label>ID: <a th:href="@{/users/{id}(id=${user.userId})}" th:text="${user.userId}"></a></label>
+                </div>
+            </div>
+
+            <div th:if="${users.size() == 1}">
+                <div class="user-id">
+                    <h3>Profile ID: <a th:href="@{/users/{id}(id=${user.userId})}" th:text="${user.userId}"></a></h3>
+                </div>
+            </div>
+
+
+            <div class="user-content" th:if="${users.size() == 1}">
+                <div class="inline">
+                    <label class="label">Username:</label>
+                    <div class="control">
+                        <input class="input is-focused" type="text" th:field="${user.username}" placeholder="">
+                    </div>
+                </div>
+
+                <div class="inline">
+                    <label class="label">Password:</label>
+                    <div class="control">
+                        <input class="input is-focused" type="text" th:field="${user.password}" placeholder="">
+                    </div>
+                </div>
+
+                <div class="inline">
+                    <label class="label">Full Name:</label>
+                    <div class="control">
+                        <input class="input is-focused" type="text" th:field="${user.name}" placeholder="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-content, user-section" th:unless="${users.size() == 1}">
+                <span th:text="${user.username}"></span><br/>
+                <span th:text="${user.password}"></span><br/>
+                <span th:text="${user.name}"></span><br/>
+            </div>
+            <hr/>
+
+            <section th:if="${users.size() == 1}">
+                <h3>Address</h3>
+                <div class="user-content" th:if="${users.size() == 1}">
+                    <div class="inline-address">
+                        <label class="label">Address Line 1:</label>
+                        <div class="control">
+                            <input class="input is-focused" type="text" th:field="${user.username}" placeholder="">
+                        </div>
+                    </div>
+                    <div class="inline-address">
+                        <label class="label">Address Line 2:</label>
+                        <div class="control">
+                            <input class="input is-focused" type="text" th:field="${user.username}" placeholder="">
+                        </div>
+                    </div>
+                    <div class="inline-address">
+                        <label class="label">City:</label>
+                        <div class="control">
+                            <input class="input is-focused" type="text" th:field="${user.username}" placeholder="">
+                        </div>
+                    </div>
+                    <div class="inline-address">
+                        <label class="label">Region:</label>
+                        <div class="control">
+                            <input class="input is-focused" type="text" th:field="${user.username}" placeholder="">
+                        </div>
+                    </div>
+                    <div class="inline-address">
+                        <label class="label">Country:</label>
+                        <div class="control">
+                            <input class="input is-focused" type="text" th:field="${user.username}" placeholder="">
+                        </div>
+                    </div>
+                    <div class="inline-address">
+                        <label class="label">Zip Code:</label>
+                        <div class="control">
+                            <input class="input is-focused" type="text" th:field="${user.username}" placeholder="">
+                        </div>
+                    </div>
+
+                    <a class="update-button" th:href="@{/your-target-url}">Update User Account</a>
+                    <a class="delete-button" th:href="@{/your-target-url}">Delete User Account</a>
+                </div>
+                <br>
+                <hr>
+            </section>
+
+
+            <section th:if="${users.size() == 1}">
+                <h3>Accounts</h3>
+                <div class="user-content">
+                    <a class="create-account-button" th:href="@{/your-target-url}">Create New Bank Account</a>
+                </div>
+                <br>
+                <hr>
+            </section>
+
+        </section>
+
     </div>
 
+    <!-- Back button ONLY appears when viewing a single user -->
     <div th:if="${users.size() == 1}">
-        <div class="inline">
-            <label class="label">Username:</label>
-            <div class="control">
-                <input class="input is-focused" type="text" th:field="${user.username}" placeholder="">
-            </div>
-        </div>
-
-        <div class="inline">
-            <label class="label">Password:</label>
-            <div class="control">
-                <input class="input is-focused" type="text" th:field="${user.password}" placeholder="">
-            </div>
-        </div>
-
-        <div class="inline">
-            <label class="label">Full Name:</label>
-            <div class="control">
-                <input class="input is-focused" type="text" th:field="${user.name}" placeholder="">
-            </div>
-        </div>
+        <a class="back-link" th:href="@{/users}">Back</a>
     </div>
 
-    <div th:unless="${users.size() == 1}">
-        <span th:text="${user.username}"></span><br/>
-        <span th:text="${user.password}"></span><br/>
-        <span th:text="${user.name}"></span><br/>
-    </div>
-
-    <hr/>
-</div>
-
-<!-- Back button ONLY appears when viewing a single user -->
-<div th:if="${users.size() == 1}">
-    <a th:href="@{/users}">Back</a>
 </div>
 
 </body>
