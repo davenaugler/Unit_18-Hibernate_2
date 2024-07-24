@@ -6,19 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     private String username;
     private String password;
     private String name;
+
     @ManyToMany
-    @JoinTable(name="user_account",
-        joinColumns = @JoinColumn(name="user_id"),
-        inverseJoinColumns = @JoinColumn(name="account_id"))
+    @JoinTable(name = "user_account",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "account_id"))
     private List<Account> accounts = new ArrayList<>();
-    @OneToOne(mappedBy = "user")
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Address address;
 
     public Long getUserId() {
@@ -65,10 +68,19 @@ public class User {
         return address;
     }
 
+    // Ensures bidirectional relationship is maintained
     public void setAddress(Address address) {
+        if (address == null) {
+            if (this.address != null) {
+                this.address.setUser(null);
+            }
+        } else {
+            address.setUser(this);
+        }
         this.address = address;
     }
 
+    // REVISED toString() via Claude
     @Override
     public String toString() {
         return "User{" +
@@ -77,7 +89,21 @@ public class User {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", accounts=" + accounts +
-                ", address=" + address +
+                ", addressId=" + (address != null ? address.getUserId() : "null") +
                 '}';
     }
+
+
+//    ORIGINAL to String()
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userId=" + userId +
+//                ", username='" + username + '\'' +
+//                ", password='" + password + '\'' +
+//                ", name='" + name + '\'' +
+//                ", accounts=" + accounts +
+//                ", address=" + address +
+//                '}';
+//    }
 }

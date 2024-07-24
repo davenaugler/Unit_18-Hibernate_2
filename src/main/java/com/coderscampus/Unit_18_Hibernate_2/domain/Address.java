@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 public class Address {
     @Id
     private Long userId;
+
     @OneToOne
     @MapsId
     @JoinColumn(name="user_id")
@@ -34,9 +35,12 @@ public class Address {
     public User getUser() {
         return user;
     }
-
+    // setUser method to maintains bidirectional relationship
     public void setUser(User user) {
         this.user = user;
+        if (user != null) {
+            this.userId = user.getUserId();
+        }
     }
 
     public String getAddressLine1() {
@@ -51,7 +55,7 @@ public class Address {
         return addressLine2;
     }
 
-    public void setAddressLine2(String getAddressLine2) {
+    public void setAddressLine2(String addressLine2) {
         this.addressLine2 = addressLine2;
     }
 
@@ -93,7 +97,7 @@ public class Address {
                 "userId=" + userId +
                 ", user=" + user +
                 ", addressLine1='" + addressLine1 + '\'' +
-                ", getAddressLine2='" + addressLine2 + '\'' +
+                ", addressLine2='" + addressLine2 + '\'' +
                 ", city='" + city + '\'' +
                 ", region='" + region + '\'' +
                 ", country='" + country + '\'' +
