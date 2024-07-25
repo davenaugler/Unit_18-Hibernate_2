@@ -6,14 +6,9 @@ import com.coderscampus.Unit_18_Hibernate_2.repo.AccountRepository;
 import com.coderscampus.Unit_18_Hibernate_2.service.AddressService;
 import com.coderscampus.Unit_18_Hibernate_2.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -87,7 +82,6 @@ public class UserController {
         return "redirect:/users/" + userId;
     }
 
-
     //    register.html
     @GetMapping("/register")
     public String createUser(ModelMap model) {
@@ -109,7 +103,5 @@ public class UserController {
         userService.delete(userId);
         return "redirect:/users";
     }
-
-
 }
 

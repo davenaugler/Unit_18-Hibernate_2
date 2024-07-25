@@ -80,7 +80,6 @@ public class User {
         this.address = address;
     }
 
-    // REVISED toString() via Claude
     @Override
     public String toString() {
         return "User{" +
@@ -92,18 +91,4 @@ public class User {
                 ", addressId=" + (address != null ? address.getUserId() : "null") +
                 '}';
     }
-
-
-//    ORIGINAL to String()
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "userId=" + userId +
-//                ", username='" + username + '\'' +
-//                ", password='" + password + '\'' +
-//                ", name='" + name + '\'' +
-//                ", accounts=" + accounts +
-//                ", address=" + address +
-//                '}';
-//    }
 }

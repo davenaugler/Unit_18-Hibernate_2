@@ -20,6 +20,7 @@
 
         <section class="user-section">
             <!-- Display profile heading based on the number of users -->
+            <!-- Displays "ID: id_number OR Profile ID: id_number -->
             <div th:if="${users.size() != 1}">
                 <div class="user-id">
                     <label>ID: <a th:href="@{/users/{id}(id=${user.userId})}" th:text="${user.userId}"></a></label>
@@ -33,6 +34,7 @@
             </div>
 
             <form th:action="@{/users/{userId}(userId=${user.userId})}" th:object="${user}" method="POST">
+                <!-- Profile section -->
                 <div class="user-content" th:if="${users.size() == 1}">
                     <div class="inline">
                         <label class="label">Username:</label>
@@ -106,18 +108,21 @@
                         <div th:if="${address == null}">No address found for this user.</div>
                         <br>
 
-                        <!-- Update and delete buttons -->
+                        <!-- Update button -->
                         <div>
                             <input class="update-button" type="submit" value="Update User Account">
-                            <input class="delete-button" type="submit" value="Delete User Account">
                         </div>
                     </div>
                     <br>
                 </div>
             </form>
+            <!-- Delete button -->
+            <form th:if="${users.size() == 1}" th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="POST" autocomplete="off">
+                <input class="delete-button" type="submit" value="Delete User Account">
+            </form>
+
+            <!-- Success message (could build out more functionality here) -->
             <div th:if="${message}" th:text="${message}" style="color: green;"></div>
-
-
 
             <div class="user-content, user-section" th:unless="${users.size() == 1}">
                 <span th:text="${user.username}"></span><br/>
@@ -125,8 +130,7 @@
                 <span th:text="${user.name}"></span><br/>
             </div>
             <hr/>
-
-
+            <!-- Accounts section -->
             <section th:if="${users.size() == 1}">
                 <h3>Accounts</h3>
                 <div class="user-content">
