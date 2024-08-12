@@ -9,7 +9,7 @@ public class Address {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
     @Column(length = 200)
     private String addressLine1;
@@ -35,6 +35,7 @@ public class Address {
     public User getUser() {
         return user;
     }
+
     // setUser method to maintains bidirectional relationship
     public void setUser(User user) {
         this.user = user;

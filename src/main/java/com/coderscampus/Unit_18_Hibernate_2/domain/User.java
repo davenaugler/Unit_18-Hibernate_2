@@ -80,6 +80,21 @@ public class User {
         this.address = address;
     }
 
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userId=" + userId +
+//                ", username='" + username + '\'' +
+//                ", password='" + password + '\'' +
+//                ", name='" + name + '\'' +
+//                ", accounts=" + accounts +
+//                ", address=" + (address != null ? address.getUserId() : "null") +
+//                '}';
+//    }
+
+    // Added 7/26/2024 @ 3:24pm
+    // Avoids the infinite recursion problem by not directly calling toString()
+    // on the collections for accounts and address.
     @Override
     public String toString() {
         return "User{" +
@@ -87,8 +102,8 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", accounts=" + accounts +
-                ", addressId=" + (address != null ? address.getUserId() : "null") +
+                ", accounts=" + (accounts != null ? "[" + accounts.size() + " accounts]" : "null") +
+                ", address=" + (address != null ? address.getUserId() : "null") +
                 '}';
     }
 }

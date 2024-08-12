@@ -50,13 +50,26 @@ public class Account {
         this.users = users;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Account{" +
+//                "accountId=" + accountId +
+//                ", accountName='" + accountName + '\'' +
+//                ", transactions=" + transactions +
+//                ", users=" + users +
+//                '}';
+//    }
+
+    // Added 7/26/2024 @ 3:28pm
+    // Avoids the infinite recursion problem by not directly calling toString()
+    // on the collections for transactions and users.
     @Override
     public String toString() {
         return "Account{" +
                 "accountId=" + accountId +
                 ", accountName='" + accountName + '\'' +
-                ", transactions=" + transactions +
-                ", users=" + users +
+                ", transactions=" + (transactions != null ? "[" + transactions.size() + " transactions]" : "null") +
+                ", users=" + (users != null ? "[" + users.size() + " users]" : "null") +
                 '}';
     }
 }

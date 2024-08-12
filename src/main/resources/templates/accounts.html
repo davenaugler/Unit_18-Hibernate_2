@@ -1,0 +1,40 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Accounts</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;Example: Account # for example Account #1 or Account #2&ndash;&gt;-->
+<!--<h1>Account #</h1>-->
+
+<!--Account Name: Field to change the account name.-->
+<!--If it's the first Account for the user it will automatically be called Account #1.-->
+<!--If it's the second Account for the user it will automatically be called Account #2, and so on.-->
+
+<!--Save Account button-->
+
+<!--Back button-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Details</title>
+</head>
+<body>
+<h1 th:text="${account.accountName}"></h1>
+
+<form th:action="@{/users/{userId}/accounts/{accountId}(userId=${user.userId},accountId=${account.accountId})}" method="post">
+    <label for="accountName">Account Name:</label>
+    <input type="text" id="accountName" name="accountName" th:value="${account.accountName}" required>
+    <br>
+    <button type="submit">Save Account</button>
+</form>
+<hr>
+<a th:href="@{/users/{userId}(userId=${user.userId})}">Back</a>
+</body>
+</html>

@@ -11,7 +11,7 @@
     <!-- H1 will display Users or User, depending on how many users are displayed -->
     <!-- The User's ID will appear next to User to ensure you know which user is being viewed. -->
     <h1 th:text="${users.size() == 1 ? 'User ' + users[0].userId : 'Users'}">Users</h1>
-    <div class="create-account-container">
+    <div class="account-container">
         <a class="create-account" type="submit" href="/register">Create Account</a>
     </div>
     <hr>
@@ -32,6 +32,14 @@
                     <h3>Profile ID: <a th:href="@{/users/{id}(id=${user.userId})}" th:text="${user.userId}"></a></h3>
                 </div>
             </div>
+
+
+            <!--            <div th:if="${includeAccounts}">-->
+            <!--                <h3>Accounts:</h3>-->
+            <!--                <ul>-->
+            <!--                    <li th:each="account : ${user.accounts}" th:text="${account.accountName}"></li>-->
+            <!--                </ul>-->
+            <!--            </div>-->
 
             <form th:action="@{/users/{userId}(userId=${user.userId})}" th:object="${user}" method="POST">
                 <!-- Profile section -->
@@ -58,6 +66,7 @@
                     </div>
 
                 </div>
+
 
                 <hr th:if="${users.size() == 1}">
 
@@ -107,19 +116,23 @@
                         </div>
                         <div th:if="${address == null}">No address found for this user.</div>
                         <br>
-
                         <!-- Update button -->
-                        <div>
+                        <div class="button-container">
                             <input class="update-button" type="submit" value="Update User Account">
                         </div>
                     </div>
-                    <br>
                 </div>
             </form>
             <!-- Delete button -->
-            <form th:if="${users.size() == 1}" th:action="@{/users/{userId}/delete(userId=${user.userId})}" method="POST" autocomplete="off">
-                <input class="delete-button" type="submit" value="Delete User Account">
+            <form class="user-content" th:if="${users.size() == 1}"
+                  th:action="@{/users/{userId}/delete(userId=${user.userId})}"
+                  method="POST" autocomplete="off">
+                <div class="button-container">
+                    <input class="delete-button" type="submit" value="Delete User Account">
+                </div>
             </form>
+
+            <br th:if="${users.size() == 1}">
 
             <!-- Success message (could build out more functionality here) -->
             <div th:if="${message}" th:text="${message}" style="color: green;"></div>
@@ -129,18 +142,59 @@
                 <span th:text="${user.password}"></span><br/>
                 <span th:text="${user.name}"></span><br/>
             </div>
-            <hr/>
-            <!-- Accounts section -->
+            <!--            <hr/> JUST COMMENTED OUT-->
+
+
+            <!--            &lt;!&ndash; ACCOUNTS SECTION &ndash;&gt;-->
+            <!--            <section th:if="${users.size() == 1}">-->
+            <!--                <h3>Accounts</h3>-->
+            <!--                <div class="user-content">-->
+            <!--                    <div class="button-container">-->
+            <!--&lt;!&ndash;                        <a class="account-button" th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}">Create New Bank Account</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;                        <a class="account-button" th:href="@{/users/{userId}/accounts/(userId=${user.userId})}">Create New Bank Account</a>&ndash;&gt;-->
+            <!--                        &lt;!&ndash; <input class="account-button" type="submit" value="Create New Bank Account">&ndash;&gt;-->
+            <!--                        <form th:action="@{/users/{userId}/accounts/create(userId=${user.userId})}" method="post">-->
+            <!--                            <button class="account-button" type="submit">Create New Bank Account</button>-->
+            <!--                        </form>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <br>-->
+            <!--                <hr>-->
+            <!--            </section>-->
+
+
+            <!-- ACCOUNTS SECTION -->
             <section th:if="${users.size() == 1}">
                 <h3>Accounts</h3>
                 <div class="user-content">
-                    <a class="create-account-button" th:href="@{/your-target-url}">Create New Bank Account</a>
+                    <div th:each="account : ${user.accounts}">
+                        <a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}"
+                           th:text="${account.accountName}"></a>
+                    </div>
+                    <br>
+                    <div class="button-container">
+                        <form th:action="@{/users/{userId}/accounts/create(userId=${user.userId})}" method="post">
+                            <button class="account-button" type="submit">Create New Bank Account</button>
+                        </form>
+                    </div>
                 </div>
                 <br>
-                <hr>
+<!--                <hr>-->
             </section>
+
+
+            <!-- User Accounts Section -->
+            <div class="user-content" th:if="${users.size() > 1}">
+                <div th:each="account : ${user.accounts}">
+                    <a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}"
+                       th:text="${account.accountName}"></a>
+                </div>
+            </div>
+            <hr>
         </section>
     </div>
+
+    <!--    I'm trying to write out a method in my Controller that will-->
 
     <!-- Error message if no user found -->
     <div th:if="${#lists.isEmpty(users)}">
