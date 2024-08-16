@@ -2,6 +2,7 @@ package com.coderscampus.Unit_18_Hibernate_2.domain;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class User {
     private String username;
     private String password;
     private String name;
+    private LocalDate createdDate;
 
     @ManyToMany
     @JoinTable(name = "user_account",
@@ -56,6 +58,14 @@ public class User {
         this.name = name;
     }
 
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
+    }
+
     public List<Account> getAccounts() {
         return accounts;
     }
@@ -80,21 +90,9 @@ public class User {
         this.address = address;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "userId=" + userId +
-//                ", username='" + username + '\'' +
-//                ", password='" + password + '\'' +
-//                ", name='" + name + '\'' +
-//                ", accounts=" + accounts +
-//                ", address=" + (address != null ? address.getUserId() : "null") +
-//                '}';
-//    }
-
     // Added 7/26/2024 @ 3:24pm
-    // Avoids the infinite recursion problem by not directly calling toString()
-    // on the collections for accounts and address.
+    //   Avoids the infinite recursion problem by not directly calling toString()
+    //   on the collections for accounts and address.
     @Override
     public String toString() {
         return "User{" +
@@ -102,8 +100,9 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", accounts=" + (accounts != null ? "[" + accounts.size() + " accounts]" : "null") +
-                ", address=" + (address != null ? address.getUserId() : "null") +
+                ", createdDate=" + createdDate +
+                ", accounts=" + (accounts != null ? "[" + accounts.size() + " accounts]" : "null") + // Need to keep?
+                ", address=" + (address != null ? address.getUserId() : "null") +  // Need to keep?
                 '}';
     }
 }

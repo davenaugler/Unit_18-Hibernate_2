@@ -1,6 +1,5 @@
 package com.coderscampus.Unit_18_Hibernate_2.web;
 
-import com.coderscampus.Unit_18_Hibernate_2.domain.Account;
 import com.coderscampus.Unit_18_Hibernate_2.domain.Address;
 import com.coderscampus.Unit_18_Hibernate_2.domain.User;
 import com.coderscampus.Unit_18_Hibernate_2.repo.AccountRepository;
@@ -26,14 +25,6 @@ public class UserController {
     }
 
     // users.html
-//    @GetMapping("/users")
-//    public String getAllUsers(ModelMap model) {
-//        List<User> users = userService.findAllUsers();
-//        model.put("users", users);
-//        return "users";
-//    }
-
-    // users.html
     @GetMapping("/users")
     public String getAllUsers(@RequestParam(required = false) Boolean includeAccounts, ModelMap model) {
         List<User> users;
@@ -46,19 +37,6 @@ public class UserController {
         model.put("includeAccounts", includeAccounts);
         return "users";
     }
-
-
-
-    // users.html
-//    @GetMapping("/users/{userId}")
-//    public String getOneUser(@PathVariable Long userId, ModelMap model) {
-//        User user = userService.findOneUserById(userId);
-//        Address address = addressService.findOneAddressById(userId);
-//        model.put("users", Arrays.asList(user));
-//        model.put("user", user);
-//        model.put("address", address != null ? address : new Address());
-//        return "users";
-//    }
 
     @GetMapping("/users/{userId}")
     public String getOneUser(@PathVariable Long userId, ModelMap model) {
@@ -86,36 +64,6 @@ public class UserController {
         model.put("address", address);
         return "users";
     }
-
-    // users.html
-//    @PostMapping("/users/{userId}")
-//    public String postOneUser(@PathVariable Long userId,
-//                              @ModelAttribute User user,
-//                              @ModelAttribute Address address) {
-//
-//        User existingUser = userService.findOneUserById(userId);
-//        if (existingUser == null) {
-//            return "redirect:/error";
-//        }
-//
-////        // Ensure the userId from the path matches the user object
-////        if (!userId.equals(user.getUserId())) {
-////            // Handle mismatch - perhaps return an error page or redirect
-////            return "redirect:/error";
-////        }
-//        System.out.println("************ BEFORE `postOneUser` ************");
-//        System.out.println("BEFORE `postOneUser`: " + userId);
-//        System.out.println("BEFORE `postOneUser`: " + user);
-//        System.out.println("BEFORE `postOneUser`: " + address);
-//        user.setUserId(userId);
-//        userService.saveUser(user, address);
-//        System.out.println("AFTER `postOneUser`: " + userId);
-//        System.out.println("AFTER `postOneUser`: " + user);
-//        System.out.println("AFTER `postOneUser`: " + address);
-//        System.out.println("#2 USER - AFTER `postOneUser`: " + user);
-//        System.out.println("************ DONE WITH `postOneUser` ************");
-//        return "redirect:/users/" + userId;
-//    }
 
     @PostMapping("/users/{userId}")
     public String postOneUser(@PathVariable Long userId,
@@ -167,19 +115,6 @@ public class UserController {
         userService.delete(userId);
         return "redirect:/users";
     }
-
-//    @GetMapping("/users/{userId}/accounts/")
-//    public String createBankAccount(@PathVariable Long userId, @ModelAttribute Long accountId, ModelMap model) {
-//        userService.createAccount(accountId);
-//        return "accounts";
-//    }
-
-
-
-
-
-
-
 
 }
 

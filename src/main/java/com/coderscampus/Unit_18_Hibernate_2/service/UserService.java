@@ -9,6 +9,8 @@ import com.coderscampus.Unit_18_Hibernate_2.repo.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +39,26 @@ public class UserService {
         Optional<User> userOpt = userRepo.findByIdWithAddress(userId);
         return userOpt.orElse(new User());
     }
+
+//   public List<User> findByUsername(String username) {
+//        return userRepo.findByUsername(username);
+//
+//   }
+//
+//   public List<User> findByName(String name) {
+//        return userRepo.name();
+//
+//   }
+//
+//   public List<User> findByUsernameAndName(String username, String name) {
+//        return userRepo.findByUsernameAndName(username, name);
+//
+//   }
+//
+//   public List<User> findByCreatedDateBetween(LocalDate date1, LocalDate date2) {
+//        return userRepo.findByCreatedDateBetween(date1, date2);
+//
+//   }
 
 
 
